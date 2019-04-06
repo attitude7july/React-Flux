@@ -1,3 +1,5 @@
 $ = jQuery = require('jquery')
-var App = console.log('hellow world from Browserify')
-module.exports = App
+var React = require('react')
+var App = require('./components/App')
+var ReactDOM = require('react-dom')
+ReactDOM.render(<App />, document.getElementById('root'))
