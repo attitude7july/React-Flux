@@ -6,17 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/attitude7july/React-Flux.git"
-  },
   "keywords": [],
   "author": "shahid kochak",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/attitude7july/React-Flux/issues"
-  },
-  "homepage": "https://github.com/attitude7july/React-Flux#readme",
   "dependencies": {
     "bootstrap": "^3.3.5",
     "browserify": "^11.0.1",
