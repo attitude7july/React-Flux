@@ -18,6 +18,7 @@ var config = {
     html: './src/*.html', // golabs works as regex
     dist: './dist/',
     js: './src/**/*.js',
+    image: './src/images/*',
     css: [
       'node_modules/bootstrap/dist/css/bootstrap.min.css',
       'node_modules/bootstrap/dist/css/bootstrap-theme.min.css'
@@ -64,6 +65,17 @@ gulp.task('css', function () {
     .pipe(connect.reload()) // reload to browser
 })
 
+// migrate images to dist folder
+// note that i could even optimize my images here
+gulp.task('images', function () {
+  gulp
+    .src(config.paths.image)
+    .pipe(gulp.dest(config.paths.dist + '/images'))
+    .pipe(connect.reload()) // reload to browser
+
+  // push favicon
+  gulp.src('./src/favicon.io').pipe(gulp.dest(config.paths.dist))
+})
 gulp.task('lint', function () {
   return gulp
     .src(config.paths.js)
@@ -75,4 +87,4 @@ gulp.task('watch', function () {
   gulp.watch(config.paths.js, ['js', 'lint'])
 })
 // add reference of tasks to run
-gulp.task('default', ['html', 'js', 'css', 'lint', 'open', 'watch'])
+gulp.task('default', ['html', 'js', 'css', 'images', 'lint', 'open', 'watch'])
