@@ -1,24 +1,33 @@
 'use strict'
-$ = jQuery = require('jquery')
 var React = require('react')
 var createClass = require('create-react-class')
+var Link = require('react-router-dom').Link
 var Header = createClass({
   render: function () {
     return (
       <nav className='navbar navbar-default'>
         <div className='container-fluid'>
-          <a href='/' className='navbar-band'>
-            <img src='' />
-          </a>
+          <Link className='navbar-brand' to='/'>
+            <img
+              src='./images/logo.png'
+              style={{ width: '35', height: '35' }}
+            />
+          </Link>
           <ul className='nav navbar-nav'>
             <li>
-              <a href='/'>Home</a>
+              <Link className='navbar-brand' to='/'>
+                Home
+              </Link>
             </li>
             <li>
-              <a href='/#author'>Authors</a>
+              <Link className='navbar-brand' to='/author'>
+                Author
+              </Link>
             </li>
             <li>
-              <a href='/#about'>About Us</a>
+              <Link className='navbar-brand' to='/about-us'>
+                About Us
+              </Link>
             </li>
           </ul>
         </div>

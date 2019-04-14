@@ -1,16 +1,15 @@
 {
   "name": "eommerceui",
   "version": "1.0.0",
-  "description": "ecommerce",
+  "description": "eommerce",
   "main": "main.js",
   "scripts": {
+    "start": "gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "shahid kochak",
+  "author": "Shahid Kochak",
   "license": "ISC",
   "dependencies": {
-    "bootstrap": "^3.4.1",
     "browserify": "^11.2.0",
     "create-react-class": "^15.6.3",
     "dotenv": "^7.0.0",
