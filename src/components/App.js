@@ -11,14 +11,13 @@ var App = createClass({
   render: function () {
     return (
       <div>
-        <ReactRouter.BrowserRouter>
-          <Header />
-          <ReactRouter.Route path='/' component={Home} />
-          <ReactRouter.Route path='/author' component={Author} />
-          <ReactRouter.Route path='/author/:id' component={Author} />
-          <ReactRouter.Route path='/about-us' component={AboutUs} />
-          <ReactRouter.Route component={NoPageFound} />
-        </ReactRouter.BrowserRouter>
+        <Header />
+        <ReactRouter.Switch>
+          <ReactRouter.Route exact path='/' component={Home} />
+          <ReactRouter.Route exact path='/author' component={Author} />
+          <ReactRouter.Route exact path='/about-us' component={AboutUs} />
+          <ReactRouter.Route path='*' component={NoPageFound} />
+        </ReactRouter.Switch>
       </div>
     )
   }
