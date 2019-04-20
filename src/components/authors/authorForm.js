@@ -1,24 +1,28 @@
 'use strict'
 var React = require('react')
 var createClass = require('create-react-class')
-var Link = require('react-router-dom').Link
 var Input = require('../../components/textInput')
+var PropTypes = require('prop-types')
 var AuthorForm = createClass({
-  //   propTypes: {
-  //    authors: React.PropTypes.array.isRequired
-  //    },
+  propTypes: {
+    author: PropTypes.object.isRequired,
+    onSave: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired,
+    errors: PropTypes.object
+  },
   render: function () {
     return (
       <div>
         <h1> Manage Author </h1>
 
-        <form>
+        <form className='needs-validation' noValidate>
           <Input
             name='firstName'
             label='first Name'
             value={this.props.author.firstName}
             onChange={this.props.onChange}
             placeholder='first name'
+            error={this.props.errors.firstName}
           />
           <br />
 
@@ -27,7 +31,7 @@ var AuthorForm = createClass({
             label='last Name'
             value={this.props.author.lastName}
             onChange={this.props.onChange}
-            placeholder='last name'
+            error={this.props.errors.lastName}
           />
           <br />
           <input
