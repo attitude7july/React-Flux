@@ -17,7 +17,8 @@
         "no-underscore-dangle": 0,
         "no-alert": 0,
         "no-lone-blocks": 0,
-        "semi": 0
+        "semi": 0,
+        "space-infix-ops": 2
     },
     "globals": {
         "jQuery": true,

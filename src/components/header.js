@@ -20,7 +20,7 @@ var Header = createClass({
               </Link>
             </li>
             <li>
-              <Link className='navbar-brand' to='/author'>
+              <Link className='navbar-brand' to='/authors'>
                 Author
               </Link>
             </li>

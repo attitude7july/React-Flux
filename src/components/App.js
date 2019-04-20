@@ -7,6 +7,7 @@ var Home = require('../components/homePage')
 var Author = require('../components/authors/authorPage')
 var AboutUs = require('../components/about/about')
 var NoPageFound = require('../components/noPageFound')
+var ManageAuthor = require('../components/authors/manageAuthorPage')
 var App = createClass({
   render: function () {
     return (
@@ -14,8 +15,13 @@ var App = createClass({
         <Header />
         <ReactRouter.Switch>
           <ReactRouter.Route exact path='/' component={Home} />
-          <ReactRouter.Route exact path='/author' component={Author} />
+          <ReactRouter.Route exact path='/authors' component={Author} />
           <ReactRouter.Route exact path='/about-us' component={AboutUs} />
+          <ReactRouter.Route
+            exact
+            path='/author-add'
+            component={ManageAuthor}
+          />
           <ReactRouter.Route path='*' component={NoPageFound} />
         </ReactRouter.Switch>
       </div>

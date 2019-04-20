@@ -3,7 +3,22 @@ var React = require('react')
 var AuthorApi = require('../../api/authorApi')
 var createClass = require('create-react-class')
 var AuthorList = require('./authorList')
+var Link = require('react-router-dom').Link
 var Authors = createClass({
+  statics: {
+    willTransitionTo: function (transition, param, query, callback) {
+      if (!confirm(" Are you sure you read a page that's this boring?")) {
+        transition.about()
+      } else {
+        callback()
+      }
+    },
+    willTransitionFrom: function (transition, component) {
+      if (!confirm(" Are you sure you leave a page that's this exciting?")) {
+        transition.about()
+      }
+    }
+  },
   getInitialState: function () {
     return { authors: [] }
   },
@@ -30,6 +45,9 @@ var Authors = createClass({
     return (
       <div>
         <h1>Authors </h1>
+        <Link className='btn btn-default' to='/author-add'>
+          Add Author
+        </Link>
         {/* <table className='table table-responsive'>
           <thead>
             <tr>
