@@ -19,19 +19,20 @@ var AuthorForm = createClass({
           <Input
             name='firstName'
             label='first Name'
-            value={this.props.author.firstName}
-            onChange={this.props.onChange}
             placeholder='first name'
+            onChange={this.props.onChange}
             error={this.props.errors.firstName}
+            value={this.props.author.firstName}
           />
           <br />
 
           <Input
             name='lastName'
             label='last Name'
-            value={this.props.author.lastName}
+            placeholder='last name'
             onChange={this.props.onChange}
             error={this.props.errors.lastName}
+            value={this.props.author.lastName}
           />
           <br />
           <input

@@ -1,19 +1,37 @@
 'use strict'
 var React = require('react')
 var createClass = require('create-react-class')
-var Router = require('react-router-dom')
 var AuthorApi = require('../../api/authorApi')
 var AuthorForm = require('./authorForm')
 var toastr = require('toastr')
 var ManageAuthor = createClass({
+  statics: {
+    willTransitionFrom: function (transition, component) {
+      if (component.state.dirty && !confirm(' Leave without saving?')) {
+        transition.abort()
+      }
+    }
+  },
+  componentWillMount: function () {
+    console.log('componentWillMount')
+    var authorId = this.props.match.params.id // this is from path '/author-edit/:id'
+    if (authorId) {
+      this.setState({ author: AuthorApi.getAuthorById(authorId) })
+      console.log(this.state.author)
+    }
+  },
   // mixins: [Router.Navigation],
   getInitialState: function () {
+    console.log('getInitialState')
     return {
-      author: { id: '44', firstName: '444', lastName: '444' },
-      errors: {}
+      author: { id: '', firstName: '', lastName: '' },
+      errors: {},
+      dirty: false
     }
   },
   setAuthorState: function (event) {
+    console.log('setAuthorState')
+    this.setState({ dirty: true })
     var field = event.target.name
     var value = event.target.value
     this.state.author[field] = value
@@ -31,6 +49,7 @@ var ManageAuthor = createClass({
       formIsValid = false
       this.state.errors.lastName = ' Last name must be atleast 3 characters'
     }
+    this.setState({ dirty: false })
     this.setState({ errors: this.state.errors })
 
     return formIsValid

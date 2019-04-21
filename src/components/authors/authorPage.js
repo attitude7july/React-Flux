@@ -5,10 +5,11 @@ var createClass = require('create-react-class')
 var AuthorList = require('./authorList')
 var Link = require('react-router-dom').Link
 var Authors = createClass({
+  isMount: false,
   statics: {
     willTransitionTo: function (transition, param, query, callback) {
       if (!confirm(" Are you sure you read a page that's this boring?")) {
-        transition.about()
+        transition.abort()
       } else {
         callback()
       }
@@ -23,9 +24,10 @@ var Authors = createClass({
     return { authors: [] }
   },
   componentWillMount: function () {
-    // if (this.isMounted()) {
-    this.setState({ authors: AuthorApi.getAllAuthors() })
-    // }
+    if (!this.isMount) {
+      this.setState({ authors: AuthorApi.getAllAuthors() })
+      this.setState({ isMount: true })
+    }
   },
 
   render: function () {

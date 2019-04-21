@@ -13,7 +13,7 @@ var AuthorList = createClass({
           <td>
             <Link
               className='navbar-brand'
-              to='/author'
+              to={'author-edit/' + author.id}
               params={{ id: author.id }}
             >
               {author.id}

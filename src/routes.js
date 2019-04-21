@@ -1,7 +1,7 @@
 'use strict'
 var React = require('react')
 var Router = require('react-router')
-var DefaultRouter = Router.DefaultRouter
+var DefaultRouter = Router.IndexRoute
 var Route = Router.Route
 
 var routes = (

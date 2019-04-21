@@ -22,7 +22,11 @@ var App = createClass({
             path='/author-add'
             component={ManageAuthor}
           />
-          <ReactRouter.Route path='*' component={NoPageFound} />
+          <ReactRouter.Route
+            name='author-edit'
+            path='/author-edit/:id'
+            component={ManageAuthor}
+          />
         </ReactRouter.Switch>
       </div>
     )
