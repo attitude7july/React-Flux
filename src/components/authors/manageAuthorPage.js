@@ -1,7 +1,8 @@
 'use strict'
 var React = require('react')
 var createClass = require('create-react-class')
-var AuthorApi = require('../../api/authorApi')
+var AuthorStore = require('../../stores/authorStore')
+var AuthorActions = require('../../actions/AuthorActions')
 var AuthorForm = require('./authorForm')
 var toastr = require('toastr')
 var ManageAuthor = createClass({
@@ -16,7 +17,7 @@ var ManageAuthor = createClass({
     console.log('componentWillMount')
     var authorId = this.props.match.params.id // this is from path '/author-edit/:id'
     if (authorId) {
-      this.setState({ author: AuthorApi.getAuthorById(authorId) })
+      this.setState({ author: AuthorStore.getAuthorById(authorId) })
       console.log(this.state.author)
     }
   },
@@ -59,7 +60,11 @@ var ManageAuthor = createClass({
     if (!this.authorFormIsValid()) {
       return
     }
-    AuthorApi.saveAuthor(this.state.author)
+    if (this.state.author.id) {
+      AuthorActions.updateAuthor(this.state.author)
+    } else {
+      AuthorActions.createAuthor(this.state.author)
+    }
     // this.transitionTo('/authors')
     toastr.success('author saved')
   },

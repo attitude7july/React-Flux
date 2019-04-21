@@ -31,8 +31,34 @@ var AuthorStore = assign({}, EventEmitter.prototype, {
 Dispatcher.register(function (action) {
   switch (action.actionType) {
     case ActionTypes.CREATE_AUTHOR:
-      _authors.push(action.author)
+      console.log(action.action)
+      _authors.push(action.action)
       AuthorStore.emitChange()
+      break
+    case ActionTypes.INITIALIZE:
+      _authors = action.initialData.authors
+      AuthorStore.emitChange()
+      break
+    case ActionTypes.UPDATE_AUTHOR:
+      console.log('update')
+      console.log(action.action)
+      var existingAuthorIndex = _authors.findIndex(
+        x => x.id === action.action.id
+      )
+      console.log(existingAuthorIndex)
+      // _.indexOf(
+      //   authors,
+      //   _.find(author, { id: author.id })
+      // )
+      _authors.splice(existingAuthorIndex, 1, action.action)
+      AuthorStore.emitChange()
+      break
+    case ActionTypes.DELETE_AUTHOR:
+      _.remove(_authors, { id: action.id })
+      AuthorStore.emitChange()
+      break
+    default:
+      // no operations
       break
   }
 })

@@ -1,6 +1,7 @@
 'use strict'
 var React = require('react')
-var AuthorApi = require('../../api/authorApi')
+var AuthorStore = require('../../stores/authorStore')
+var AuthorActions = require('../../actions/authorActions')
 var createClass = require('create-react-class')
 var AuthorList = require('./authorList')
 var Link = require('react-router-dom').Link
@@ -21,15 +22,19 @@ var Authors = createClass({
     }
   },
   getInitialState: function () {
-    return { authors: [] }
+    return { authors: AuthorStore.getAllAuthors() }
   },
   componentWillMount: function () {
-    if (!this.isMount) {
-      this.setState({ authors: AuthorApi.getAllAuthors() })
-      this.setState({ isMount: true })
-    }
+    AuthorStore.addChangeListener(this._onChange)
   },
-
+  // clean up when component is unmounted
+  componentWillUnmount: function () {
+    AuthorStore.removeChangeListener(this._onChange)
+  },
+  _onChange: function () {
+    console.log('State changes')
+    this.setState({ authors: AuthorStore.getAllAuthors() })
+  },
   render: function () {
     // Moved Committed code to authorList.js
     // var createAuthorRow = function (author) {
